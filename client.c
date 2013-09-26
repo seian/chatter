@@ -53,8 +53,10 @@ int main(int argc, char *argv[]) {
 		printf("you => ");
 		fgets(buf, 255, stdin);
 		
-		if(!strcmp(buf, "/q"))
+		if(!strncmp(buf, "qq", 2)) {
+			printf("quit commander\n");
 			break;
+		}
 
 		chk = write(sockfd, buf, strlen(buf));
 
@@ -71,7 +73,7 @@ int main(int argc, char *argv[]) {
 	}
 	
 	close(sockfd);
-		
+	printf("connection close\n");
 
 	return 0;
 }

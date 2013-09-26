@@ -24,6 +24,7 @@ int main(int argc, char *argv[]) {
 	char buf[256];
 	socklen_t clilen;
 	
+	printf("socket establishing...\n");
 	sockfd = socket(AF_INET, SOCK_STREAM, 0);
 	
 	if(sockfd < 0)
@@ -59,8 +60,10 @@ int main(int argc, char *argv[]) {
 		bzero(buf, 256);
 		fgets(buf, 255, stdin);
 		
-		if(!strcmp(buf, "/q")) 
+		if(!strncmp(buf, "qq", 2)) {
+			printf("quit command\n");
 			break;
+		}
 
 		chk = write(newsockfd, buf, strlen(buf));
 		
